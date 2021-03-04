@@ -23,6 +23,8 @@ def get_host_ip():
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('8.8.8.8', 80))
         ip = s.getsockname()[0]
+    except Exception as e:
+        print(e)
     finally:
         s.close()
 
@@ -55,5 +57,7 @@ def get_weather(name):
             res = "ERROR: {}".format(response.status_code)
     except requests.Timeout:
         res = "ERROR: TIMEOUT"
-
+    except Exception as e:
+        print(e)
     return res
+
