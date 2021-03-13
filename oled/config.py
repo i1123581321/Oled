@@ -1,0 +1,8 @@
+# SCREEN
+WIDTH = 128
+HEIGHT = 32
+COLUMN = 128
+PAGE = 4
+
+# i2c
+ADDRESS = 0x3c
