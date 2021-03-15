@@ -2,20 +2,20 @@ from . import config
 from smbus import SMBus
 import time
 
-def Oled():
+class Oled():
     def __init__(self):
         self.bus = SMBus(1)
 
     def command(self, cmd):
-        bus.write_byte_data(config.ADDRESS, 0x00, cmd)
+        self.bus.write_byte_data(config.ADDRESS, 0x00, cmd)
 
     def data(self, data):
-        bus.write_byte_data(config.ADDRESS, 0x40, data)
+        self.bus.write_byte_data(config.ADDRESS, 0x40, data)
 
     def delay(self, ms):
         time.sleep(ms / 1000.0)
 
-    def setup():
+    def setup(self):
         self.command(0xAE)
         self.command(0x40)
         self.command(0xB0)

@@ -6,7 +6,7 @@ import socket
 
 from PIL import Image, ImageDraw, ImageFont
 
-from oled import config, olde
+from oled import config, oled
 
 
 def get_host_ip():
@@ -21,8 +21,7 @@ def get_host_ip():
         s.close()
     return ip
 
-font = ImageFont.truetype('/home/pi/workspace/Oled/fonts/Font.ttc', 20)
-oled = olde.Oled()
+font = ImageFont.truetype('/home/pi/workspace/Oled/fonts/Font.ttc', 16)
 
 
 def handler(signum, frame):
@@ -34,7 +33,7 @@ def handler(signum, frame):
 if __name__ == "__main__":
     signal.signal(signal.SIGTERM, handler)
     signal.signal(signal.SIGINT, handler)
-
+    oled = oled.Oled()
     ip = get_host_ip()
     oled.setup()
     oled.clear()
@@ -46,7 +45,7 @@ if __name__ == "__main__":
         draw.line([(0, 0), (0, 31)], fill=0)
         draw.line([(0, 31), (127, 31)], fill=0)
         draw.line([(127, 0), (127, 31)], fill=0)
-        draw.text((2, 16), ip, font=font, fill=0)
+        draw.text((4, 7), ip, font=font, fill=0)
         oled.show(image)
         oled.delay(10000)
         ip = get_host_ip()
